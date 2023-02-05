@@ -19,9 +19,9 @@ namespace AspApp.api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllSegments()
+        public async Task<IActionResult> GetAllSegments()
         {
-            var segments = segmentRepository.GetAll();
+            var segments = await segmentRepository.GetAllAsync();
             var segmentsDto = mapper.Map<List<Models.Dto.Segment>>(segments);
             return Ok(segmentsDto);
 

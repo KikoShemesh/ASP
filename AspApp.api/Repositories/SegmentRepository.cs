@@ -1,5 +1,6 @@
 ﻿using AspApp.api.DB;
 using AspApp.api.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace AspApp.api.Repositories
 {
@@ -10,9 +11,9 @@ namespace AspApp.api.Repositories
         {
             this.israelTrailContext = israelTrailContext;
         }
-        public IEnumerable<Segment> GetAll()
+        public async Task<IEnumerable<Segment>> GetAllAsync()
         {
-            return israelTrailContext.Segment.ToList();
+            return await israelTrailContext.Segment.ToListAsync();
         }
     }
 }

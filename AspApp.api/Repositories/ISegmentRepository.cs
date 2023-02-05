@@ -4,6 +4,6 @@ namespace AspApp.api.Repositories
 {
     public interface ISegmentRepository
     {
-        IEnumerable<Segment> GetAll();
+        Task<IEnumerable<Segment>> GetAllAsync();
     }
 }
