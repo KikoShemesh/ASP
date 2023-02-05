@@ -1,4 +1,5 @@
 using AspApp.api.DB;
+using AspApp.api.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<IsraelTrailContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("IsraelTrail")));
-//builder.Services.AddDbContext<IsraelTrailContext>(options => options.UseSqlServer("server=localhost;database=IsraelTrailDb;Trusted_Connection=true"));
+builder.Services.AddScoped<ISegmentRepository, SegmentRepository>(); // give me the implimtiaon of Segment repository when i askeg for ISegmentRepository
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
